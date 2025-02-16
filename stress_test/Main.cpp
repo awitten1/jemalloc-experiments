@@ -64,6 +64,7 @@ double run() {
 
 int main(int argc, char **argv) {
   gflags::ParseCommandLineFlags(&argc, &argv, true);
+  std::cout << "hello" << std::endl;
   double time = run();
 
   if (FLAGS_print_malloc_stats) {

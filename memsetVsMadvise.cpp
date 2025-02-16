@@ -42,7 +42,7 @@ struct Result {
 void maybeTouchPages(void* beginv, std::size_t length) {
   char* begin = static_cast<char*>(beginv);
   if (FLAGS_touch_after_zero) {
-    for (char* ptr = begin; ptr != begin + length; ptr += 4096) {
+    for (char* ptr = begin; ptr < begin + length; ptr += 4096) {
       *ptr = 0;
     }
   }
@@ -126,7 +126,8 @@ int main(int argc, char** argv) {
     for (int j = 0; j < FLAGS_num_runs; ++j) {
       std::vector<std::future<Result>> results;
       for (int k = 0; k < FLAGS_num_threads; ++k) {
-        results.push_back(std::async(std::launch::async, runTest, 4096 * i));
+        results.push_back(std::async(std::launch::async, 
+          runTest, 4096 * i));
       }
       for (int k = 0; k < FLAGS_num_threads; ++k) {
         sum.accum(results[k].get());

@@ -31,6 +31,9 @@ add_executable(
     stress_test/Allocation.cpp
 )
 
+add_executable(basic basic.cpp)
+target_link_libraries(basic PUBLIC jemalloc)
+
 set_property(TARGET stress PROPERTY CXX_STANDARD 14)
 target_link_libraries(stress PRIVATE gflags jemalloc m ${CMAKE_THREAD_LIBS_INIT})
 

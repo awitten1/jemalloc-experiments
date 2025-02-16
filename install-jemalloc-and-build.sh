@@ -28,7 +28,7 @@ install_jemalloc() {
 }
 
 build_experiments() {
-    cmake -B build -DCMAKE_BUILD_TYPE=RelWithDebInfo \
+    cmake -B build -DCMAKE_BUILD_TYPE="${BUILD_TYPE:-RelWithDebInfo}" \
         -G Ninja -DJEMALLOC_INSTALL_DIR="${install_dir}"
     cmake --build build
 }
