@@ -4,6 +4,7 @@
 #include <jemalloc/jemalloc.h>
 #include <cstdlib>
 #include <tuple>
+#include <vector>
 
 // Copied from 
 // https://github.com/jemalloc/jemalloc/wiki/Use-Case%3A-Introspection-Via-mallctl%2A%28%29
@@ -18,6 +19,12 @@
 
 
 void
+make_arr() {
+        int* ptr = new int[10000];
+}
+
+
+void
 do_something(size_t i)
 {
         // Compare these two.  They will have different totals.
@@ -27,6 +34,8 @@ do_something(size_t i)
 
         void* ptr = malloc(i * 1000);
         free(ptr);
+
+        make_arr();
 }
 
 int

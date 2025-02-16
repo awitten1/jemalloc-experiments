@@ -12,7 +12,7 @@ if (NOT ${JEMALLOC_INSTALL_DIR} STREQUAL "")
 endif()
 
 find_path(JEMALLOC_INCLUDE_DIR jemalloc REQUIRED)
-find_library(JEMALLOC_LIBRARY jemalloc REQUIRED)
+find_library(JEMALLOC_LIBRARY NAMES libjemalloc.a REQUIRED)
 add_library(jemalloc INTERFACE)
 target_link_libraries(jemalloc INTERFACE ${JEMALLOC_LIBRARY})
 target_include_directories(jemalloc INTERFACE ${JEMALLOC_INCLUDE_DIR})
